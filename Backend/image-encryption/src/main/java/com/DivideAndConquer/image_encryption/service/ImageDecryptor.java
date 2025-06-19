@@ -16,38 +16,6 @@ public class ImageDecryptor{
         "TACG", "TAGC", "TCAG", "TCGA", "TGAC", "TGCA"
     };
 
-    /*  main method is not required in web api
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("IMAGE DECRYPTION");
-        
-        try {
-            // Get user inputs
-            System.out.print("Encrypted image path: ");
-            BufferedImage img = ImageIO.read(new File(sc.nextLine()));
-            
-            System.out.print("Output path: ");
-            String outputPath = sc.nextLine();
-            
-            System.out.print("Decryption key: ");
-            long key = sc.nextLong();
-
-            // Decrypt the image
-            processImage(img, key);
-            
-            // Save decrypted image
-            ImageIO.write(img, "PNG", new File(outputPath));
-            System.out.println("Decryption successful !!!");
-            
-        } catch (Exception e) {
-            System.err.println("Decryption failed: " + e.getMessage());
-            e.printStackTrace();
-            System.err.println("Possible causes: Wrong key or corrupted image");
-        } finally {
-            sc.close();
-        }
-    }*/
-
     public byte[] decrypt(byte[] imageBytes, long key) throws IOException {
         // Convert byte[] to BufferedImage
         BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));

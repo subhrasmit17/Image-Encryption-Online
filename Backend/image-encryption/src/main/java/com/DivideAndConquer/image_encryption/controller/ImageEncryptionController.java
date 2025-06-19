@@ -52,16 +52,4 @@ public class ImageEncryptionController
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    /* no use for this as of now
-    private byte[] encryptImageBytes(byte[] imageBytes) {
-        // Sample encryption: just reversing bytes for demonstration.
-        // Replace this with your actual encryption algorithm.
-        for (int i = 0; i < imageBytes.length / 2; i++) {
-            byte temp = imageBytes[i];
-            imageBytes[i] = imageBytes[imageBytes.length - i - 1];
-            imageBytes[imageBytes.length - i - 1] = temp;
-        }
-        return imageBytes;
-    }*/
 }

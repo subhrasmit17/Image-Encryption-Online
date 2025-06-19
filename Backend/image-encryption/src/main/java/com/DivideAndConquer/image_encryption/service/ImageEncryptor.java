@@ -16,36 +16,6 @@ public class ImageEncryptor {
         "TACG", "TAGC", "TCAG", "TCGA", "TGAC", "TGCA"
     };
 
-    /*  main method is not required in web api
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("IMAGE ENCRYPTION");
-        
-        try {
-            // Get user inputs
-            System.out.print("Input image path: ");
-            BufferedImage img = ImageIO.read(new File(sc.nextLine()));
-            
-            System.out.print("Output path: ");
-            String outputPath = sc.nextLine();
-            
-            System.out.print("Encryption key: ");
-            long key = sc.nextLong();
-
-            // Encrypt the image
-            encryptImage(img, key);
-            
-            // Save encrypted image
-            ImageIO.write(img, "PNG", new File(outputPath));
-            System.out.println("Encryption successful !!!");
-            
-        } catch (Exception e) {
-            System.err.println("Encryption failed: " + e.getMessage());
-        } finally {
-            sc.close();
-        }
-    }*/
-
     //to give output in bytes instead of BufferedImage, for the web api
     public byte[] encrypt(byte[] imageBytes, long key) throws IOException {
         // Convert byte[] to BufferedImage
