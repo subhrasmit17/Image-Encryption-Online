@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Encryption API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Image Encryption Web API</h1>
+
+        <label for="imageInput">Select Image:</label>
+        <input type="file" id="imageInput">
+
+        <label for="keyInput">Enter Key:</label>
+        <input type="text" id="keyInput">
+
+        <div class="button-group">
+            <button onclick="encryptImage()">Encrypt</button>
+            <button onclick="decryptImage()">Decrypt</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
