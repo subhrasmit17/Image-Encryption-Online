@@ -10,7 +10,7 @@ async function processImage(action) {
     const fileInput = document.getElementById('imageInput');
     const keyInput = document.getElementById('keyInput');
 
-    if (fileInput.files.length === 0 || keyInput.value === '') {
+    if (fileInput.files.length === 0 || keyInput.value === '') {   //pressed encrypt/decrypt button without adding image or key
         alert('Please select an image and enter a key.');
         return;
     }
@@ -26,7 +26,9 @@ async function processImage(action) {
         });
 
         if (!response.ok) {
-            throw new Error('Error processing the image');
+            //extract error message from the response body
+            const errorText = await response.text();
+            throw new Error(errorText || 'Error processing the image');
         }
 
         const blob = await response.blob();
