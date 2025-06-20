@@ -20,7 +20,7 @@ async function processImage(action) {
     formData.append('key', keyInput.value);
 
     try {
-        const response = await fetch(`http://localhost:8080/api/image/${action}?key=${keyInput.value}`, {
+        const response = await fetch(`https://image-encryptor-backend.onrender.com/api/image/${action}?key=${keyInput.value}`, {
             method: 'POST',
             body: formData
         });
