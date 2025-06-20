@@ -27,7 +27,7 @@ async function processImage(action) {
 
         if (!response.ok) {
             //extract error message from the response body
-            const errorText = await response.text();
+            const errorText = await response.json();
             throw new Error(errorText || 'Error processing the image');
         }
 

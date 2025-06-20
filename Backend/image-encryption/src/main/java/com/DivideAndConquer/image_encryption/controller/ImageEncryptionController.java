@@ -12,7 +12,7 @@ import com.DivideAndConquer.image_encryption.service.ImageDecryptor;
 
 import java.io.IOException;
 
-@CrossOrigin(origins = "*")     //to solve cors issue for now(this solution is not secure)
+@CrossOrigin(origins = "https://image-encryptor-online.onrender.com")
 
 @RestController
 @RequestMapping("/api/image")
@@ -26,11 +26,11 @@ public class ImageEncryptionController
         try {
             byte[] imageBytes = file.getBytes();
 
-            // Encrypt the image (replace this with your algorithm)
+            // Encrypt the image
             byte[] encryptedBytes = encryptor.encrypt(imageBytes, key);
 
             HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.IMAGE_PNG); // Or the format you return
+            headers.setContentType(MediaType.IMAGE_PNG); // Or the format to return
 
             return new ResponseEntity<>(encryptedBytes, headers, HttpStatus.OK);
         } catch (IOException e) {
