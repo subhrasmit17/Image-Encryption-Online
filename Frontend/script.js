@@ -26,9 +26,19 @@ async function processImage(action) {
         });
 
         if (!response.ok) {
-            //extract error message from the response body
-            const errorText = await response.json();
-            throw new Error(errorText || 'Error processing the image');
+            let errorText = '';
+            try {
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    const errorData = await response.json();
+                    errorText = errorData.error || JSON.stringify(errorData);
+                } else {
+                    errorText = await response.text();
+                }
+            } catch (parseError) {
+                errorText = 'Unknown error occurred';
+            }
+            throw new Error(errorText);
         }
 
         const blob = await response.blob();
