@@ -31,7 +31,7 @@ async function validateImageAndKey() {
 
     // File size validation
     if (file.size > maxFileSize) {
-        alert('File size exceeds 2MB limit. Please upload a smaller image.');
+        alert('File size exceeds 1.5MB limit. Please upload a smaller image.');
         return false;
     }
 
@@ -44,7 +44,7 @@ async function validateImageAndKey() {
     // Key size validation
     const keyLength = keyInput.value.length;
     if (keyLength < minKeyLength || keyLength > maxKeyLength) {
-        alert('Key must be between 8 and 32 characters.');
+        alert('Key must be shorter than 15 characters.');
         return false;
     }
 
