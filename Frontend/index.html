@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,6 +10,21 @@
     <div class="container">
         <h1>Image Encryption Web API</h1>
 
+        <!-- Notice Section -->
+        <div class="notice">
+            <h2>Important Upload Guidelines</h2>
+            <h4>To keep this service free and accessible, the backend is hosted on a free-tier server. This brings a few important limitations:</h4>
+            <ul>
+                <li>📌 Max image size: <strong>1.5 MB</strong></li>
+                <li>📌 Max resolution: <strong>1,000,000 pixels total</strong> (example: 1000×1000)</li>
+                <li>📌 Key length: <strong>Max 15 characters</strong></li>
+                <li>📌 Supported formats: <strong>.jpg, .png</strong></li>
+                <li>⏳ The server may take a few seconds to respond if it's starting from sleep (only happens after long inactivity)</li>
+            </ul>
+            <p>If the upload fails or seems slow, please double-check the image size and try again after a few seconds.</p>
+        </div>
+
+        <!-- Upload Section -->
         <label for="imageInput">Select Image:</label>
         <input type="file" id="imageInput">
 
