@@ -1,19 +1,19 @@
 async function encryptImage() {
-    const isValid = await validateImageAndKey();
+    const isValid = await validateImageAndKey('encrypt');
     if (isValid) {
         await processImage('encrypt');
     }
 }
 
 async function decryptImage() {
-    const isValid = await validateImageAndKey();
+    const isValid = await validateImageAndKey('decrypt');
     if (isValid) {
         await processImage('decrypt');
     }
 }
 
 //Validation Function
-async function validateImageAndKey() {
+async function validateImageAndKey(action) {
     const fileInput = document.getElementById('imageInput');
     const keyInput = document.getElementById('keyInput');
 
@@ -29,8 +29,8 @@ async function validateImageAndKey() {
     const maxKeyLength = 15;
     const maxTotalPixels = 1000000;
 
-    // File size validation
-    if (file.size > maxFileSize) {
+    // File size validation(ignore for decryption)
+    if (action === 'encrypt' && file.size > maxFileSize) {
         alert('File size exceeds 1.5MB limit. Please upload a smaller image.');
         return false;
     }
@@ -84,11 +84,23 @@ async function processImage(action) {
     const fileInput = document.getElementById('imageInput');
     const keyInput = document.getElementById('keyInput');
 
+    const loader = document.getElementById('loader');
+
+    const encryptButton = document.querySelector('button[onclick="encryptImage()"]');
+    const decryptButton = document.querySelector('button[onclick="decryptImage()"]');
+
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
     formData.append('key', keyInput.value);
 
     try {
+        //disable buttons while processing
+        encryptButton.disabled = true;
+        decryptButton.disabled = true;
+
+        //show loader
+        loader.style.display = 'block';
+
         const response = await fetch(`https://image-encryptor-backend.onrender.com/api/image/${action}?key=${keyInput.value}`, {
             method: 'POST',
             body: formData
@@ -123,6 +135,13 @@ async function processImage(action) {
 
         let userFriendlyMessage = mapErrorToUserMessage(error.message);
         alert(userFriendlyMessage);
+    } finally {
+        //enable buttons once process is complete
+        encryptButton.disabled = false;
+        decryptButton.disabled = false;
+        
+        //hide loader
+        loader.style.display = 'none';
     }
 }
 
