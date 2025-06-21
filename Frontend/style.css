@@ -73,6 +73,12 @@ button:hover {
     background-color: #0056b3;
 }
 
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 .loader {
     border: 6px solid #f3f3f3;
     border-top: 6px solid #007bff;
