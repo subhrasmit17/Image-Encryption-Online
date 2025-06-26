@@ -13,7 +13,7 @@ html, body {
 }
 
 body {
-  background: linear-gradient(to right, #fff3e3, #ad7aff);
+  background: linear-gradient(to right, #dfdcff, #ffffff);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@ header {
 
 header h1 {
   font-size: 2em;
-  color: #ffffff;
+  color: #885dff;
 }
 
 .subtext {
@@ -55,6 +55,7 @@ header h1 {
   border-radius: 12px;
   font-size: 0.95em;
   color: #000000;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.137);
 }
 
 .notice h2 {
@@ -78,7 +79,7 @@ header h1 {
   background: #fff;
   border-radius: 12px;
   padding: 25px 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.11);
   text-align: center;
 }
 
