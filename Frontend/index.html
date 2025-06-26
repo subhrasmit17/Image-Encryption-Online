@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Image Encryption API</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Encryptor Online</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-    <div class="container">
-        <div id="loader" class="loader" style="display: none;"></div>
-        <h1>Image Encryption Web API</h1>
+  <main class="main-container">
+    <header>
+      <h1>Image Encryptor Online</h1>
+      <p class="subtext">Fast, free & secure image encryption in your browser.</p>
+    </header>
 
-        <!-- Notice Section -->
-        <div class="notice">
-            <h2>Important Upload Guidelines</h2>
-            <h4>To keep this service free and accessible, the backend is hosted on a free-tier server. This brings a few important limitations:</h4>
-            <ul>
-                <li>📌 Max image size: <strong>1.5 MB</strong></li>
-                <li>📌 Max resolution: <strong>1,000,000 pixels total</strong> (example: 1000×1000)</li>
-                <li>📌 Key length: <strong>Max 15 characters</strong></li>
-                <li>📌 Supported formats: <strong>.jpg, .png</strong></li>
-                <li>⏳ The server may take a few seconds to respond if it's starting from sleep (only happens after long inactivity)</li>
-            </ul>
-            <p>If the upload fails or seems slow, please double-check the image size and try again after a few seconds.</p>
-        </div>
+    <!-- Notice -->
+    <section class="notice">
+      <h2>Upload Guidelines</h2>
+      <ul>
+        <li>Max image size: <strong>1.5 MB</strong></li>
+        <li>Max resolution: <strong>1,000,000 pixels</strong> (e.g. 1000×1000)</li>
+        <li>Key length: <strong>Max 15 characters</strong></li>
+        <li>Supported formats: <strong>.jpg, .png</strong></li>
+        <li><br>Server may take a few seconds to respond when waking from sleep</li>
+      </ul>
+      <p>⚠️ If upload fails, double-check image size and retry.</p>
+    </section>
 
-        <!-- Upload Section -->
-        <label for="imageInput">Select Image:</label>
-        <input type="file" id="imageInput">
+    <!-- Unified Form -->
+    <section class="card">
+      <h3>Select Image & Key</h3>
+      <input type="file" id="imageInput" accept="image/png, image/jpeg" />
+      <input type="text" id="keyInput" maxlength="15" placeholder="Enter key (max 15 characters)" />
+      <div class="button-group">
+        <button onclick="encryptImage()">Encrypt</button>
+        <button onclick="decryptImage()">Decrypt</button>
+      </div>
+    </section>
 
-        <label for="keyInput">Enter Key:</label>
-        <input type="text" id="keyInput">
+    <div id="loader" class="loader" style="display: none;"></div>
+  </main>
 
-        <div class="button-group">
-            <button onclick="encryptImage()">Encrypt</button>
-            <button onclick="decryptImage()">Decrypt</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
