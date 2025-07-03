@@ -23,11 +23,11 @@ async function validateImageAndKey(action) {
     }
 
     const file = fileInput.files[0];
-    const maxFileSize = 10 * 1024 * 1024; // 1.5 MB
+    const maxFileSize = 1.5 * 1024 * 1024; // 1.5 MB
     const allowedTypes = ['image/png', 'image/jpeg'];
     const minKeyLength = 1;
     const maxKeyLength = 15;
-    const maxTotalPixels = 100000000000000000000; //1000000
+    const maxTotalPixels = 1000000;
 
     // File size validation(ignore for decryption)
     if (action === 'encrypt' && file.size > maxFileSize) {
