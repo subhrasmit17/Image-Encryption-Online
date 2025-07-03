@@ -11,6 +11,7 @@ import com.DivideAndConquer.image_encryption.service.ImageEncryptor;
 import com.DivideAndConquer.image_encryption.service.ImageDecryptor;
 
 import java.io.IOException;
+import java.util.Map;
 
 @CrossOrigin(origins = "https://image-encryptor-online.onrender.com")
 
@@ -22,7 +23,7 @@ public class ImageEncryptionController
     private final ImageDecryptor decryptor = new ImageDecryptor();
 
     @PostMapping("/encrypt")
-    public ResponseEntity<byte[]> encryptImage(@RequestParam("file") MultipartFile file, @RequestParam("key") long key) {
+    public ResponseEntity<?> encryptImage(@RequestParam("file") MultipartFile file, @RequestParam("key") long key) {
         try {
             byte[] imageBytes = file.getBytes();
 
@@ -34,12 +35,12 @@ public class ImageEncryptionController
 
             return new ResponseEntity<>(encryptedBytes, headers, HttpStatus.OK);
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.badRequest().body(Map.of("error", "Encryption failed: " + e.getMessage()));
         }
     }
 
     @PostMapping("/decrypt")
-    public ResponseEntity<byte[]> decryptImage(@RequestParam("file") MultipartFile file, @RequestParam("key") long key) {
+    public ResponseEntity<?> decryptImage(@RequestParam("file") MultipartFile file, @RequestParam("key") long key) {
         try {
             byte[] imageBytes = file.getBytes();
             byte[] decryptedBytes = decryptor.decrypt(imageBytes, key);
@@ -49,7 +50,7 @@ public class ImageEncryptionController
 
             return new ResponseEntity<>(decryptedBytes, headers, HttpStatus.OK);
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.badRequest().body(Map.of("error", "Decryption failed: " + e.getMessage()));
         }
     }
 }
