@@ -9,9 +9,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.DivideAndConquer.image_encryption.service.ImageEncryptor;
 import com.DivideAndConquer.image_encryption.service.ImageDecryptor;
+import com.DivideAndConquer.image_encryption.service.MetricService;
 
 import java.io.IOException;
+import java.io.ByteArrayInputStream;
 import java.util.Map;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 @CrossOrigin(origins = "https://image-encryptor-online.onrender.com")
 
@@ -51,6 +55,24 @@ public class ImageEncryptionController
             return new ResponseEntity<>(decryptedBytes, headers, HttpStatus.OK);
         } catch (IOException e) {
             return ResponseEntity.badRequest().body(Map.of("error", "Decryption failed: " + e.getMessage()));
+        }
+    }
+
+    @PostMapping("/npcr")
+    public ResponseEntity<?> calculateNPCR(
+            @RequestParam("image1") MultipartFile image1,
+            @RequestParam("image2") MultipartFile image2) {
+        try {
+            BufferedImage img1 = ImageIO.read(new ByteArrayInputStream(image1.getBytes()));
+            BufferedImage img2 = ImageIO.read(new ByteArrayInputStream(image2.getBytes()));
+
+            double npcr = MetricService.calculateNPCR(img1, img2);
+
+            return ResponseEntity.ok(Map.of("NPCR", npcr));
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("error", "NPCR calculation failed: " + e.getMessage()));
         }
     }
 }

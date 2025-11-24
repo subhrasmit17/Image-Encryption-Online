@@ -1,3 +1,7 @@
+let lastEncryptedBlob = null;
+
+
+
 async function encryptImage() {
     const isValid = await validateImageAndKey('encrypt');
     if (isValid) {
@@ -123,13 +127,33 @@ async function processImage(action) {
         }
 
         const blob = await response.blob();
-        const downloadUrl = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = downloadUrl;
-        a.download = (action === 'encrypt' ? 'encrypted.png' : 'decrypted.png');
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
+
+        // Save encrypted blob for download
+        lastEncryptedBlob = blob;
+
+
+
+
+
+
+        // Create preview URL
+        const downloadUrl = URL.createObjectURL(blob);
+
+        // Show encrypted image preview
+        const previewOutput = document.getElementById("previewOutput");
+        previewOutput.src = downloadUrl;
+        previewOutput.style.display = "block";
+
+        // Show download button
+        document.getElementById("downloadButton").style.display = "block";
+
+        // Calculate NPCR only after encryption
+        if (action === "encrypt") {
+            const originalBlob = fileInput.files[0];
+            await calculateNPCR(originalBlob, blob);
+        }
+
+
     } catch (error) {
         console.error('Request failed:', error);
 
@@ -139,11 +163,57 @@ async function processImage(action) {
         //enable buttons once process is complete
         encryptButton.disabled = false;
         decryptButton.disabled = false;
-        
+
         //hide loader
         loader.style.display = 'none';
     }
 }
+
+async function calculateNPCR(originalBlob, encryptedBlob) {
+    const formData = new FormData();
+    formData.append("image1", originalBlob);
+    formData.append("image2", encryptedBlob);
+
+    try {
+        const response = await fetch("https://image-encryptor-backend.onrender.com/api/image/npcr", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(await response.text());
+        }
+
+        const data = await response.json();
+
+        // Update UI
+        document.getElementById("npcrValue").innerText = data.NPCR.toFixed(4);
+        document.getElementById("metricsCard").style.display = "block";
+
+    } catch (err) {
+        console.error("NPCR calculation error:", err);
+        alert("Failed to calculate NPCR.");
+    }
+}
+
+
+
+function downloadEncryptedImage() {
+    if (!lastEncryptedBlob) {
+        alert("No encrypted image available to download.");
+        return;
+    }
+
+    const url = URL.createObjectURL(lastEncryptedBlob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "encrypted.png";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+}
+
+
 
 //Error Mapping Function
 function mapErrorToUserMessage(errorMessage) {
