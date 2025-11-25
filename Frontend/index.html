@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,26 +9,23 @@
 </head>
 
 <body>
-  <main class="main-container">
+
+<div class="layout-container">
+
+  <!-- LEFT: PSNR (PC only) -->
+  <section id="metricsCard" class="metrics-card" style="display:none;">
+    <h3>NPCR Metric</h3>
+    <p><strong>NPCR:</strong> <span id="npcrValue">--</span>%</p>
+  </section>
+
+  <!-- CENTER: Upload Form -->
+  <main class="center-panel">
+
     <header>
       <h1>Image Encryptor Online</h1>
       <p class="subtext">Fast, free & secure image encryption in your browser.</p>
     </header>
 
-    <!-- Notice -->
-    <section class="notice">
-      <h2>Upload Guidelines</h2>
-      <ul>
-        <li>Max image size: <strong>1.5 MB</strong></li>
-        <li>Max resolution: <strong>1,000,000 pixels</strong> (e.g. 1000×1000)</li>
-        <li>Key length: <strong>Max 15 characters</strong></li>
-        <li>Supported formats: <strong>.jpg, .png</strong></li>
-        <li><br>Server may take a few seconds to respond when waking from sleep</li>
-      </ul>
-      <p>⚠️ If upload fails, double-check image size and retry.</p>
-    </section>
-
-    <!-- Unified Form -->
     <section class="card">
       <h3>Select Image & Key</h3>
       <input type="file" id="imageInput" accept="image/png, image/jpeg" />
@@ -40,39 +36,27 @@
       </div>
     </section>
 
-    <div id="loader" class="loader" style="display: none;"></div>
+    <div id="loader" class="loader"></div>
   </main>
 
+  <!-- RIGHT: Preview -->
+  <aside class="preview-container">
 
+    <div id="previewUploadedWrapper" class="preview-block" style="display:none;">
+      <h4>Uploaded Image</h4>
+      <img id="previewUploaded" class="preview-img">
+    </div>
 
+    <div id="previewOutputWrapper" class="preview-block" style="display:none;">
+      <h4>Output Image</h4>
+      <img id="previewOutput" class="preview-img">
+      <button id="downloadButton" onclick="downloadEncryptedImage()">Download Image</button>
+    </div>
 
+  </aside>
 
+</div>
 
-
-
-
-
-
-  <img id="previewOutput" class="preview-img" style="display:none; margin-top:15px;">
-
-  <button id="downloadButton" style="display:none; margin-top:10px;" onclick="downloadEncryptedImage()">
-    Download Encrypted Image
-  </button>
-
-  <section class="card" id="metricsCard" style="display:none; margin-top:20px;">
-    <h3>NPCR Metric</h3>
-    <p><strong>NPCR:</strong> <span id="npcrValue">--</span>%</p>
-  </section>
-
-
-
-
-
-
-
-
-  
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
-
 </html>
