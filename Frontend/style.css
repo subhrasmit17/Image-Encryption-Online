@@ -169,16 +169,20 @@ button:disabled {
   justify-content: flex-start;
 }
 
+
 .right-panel {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
 }
+
 
 .preview-block {
   width: 100%;
-  height: 260px;
-  /* fixed height */
+  height: auto;
+  padding: 10px;
+
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -197,10 +201,13 @@ button:disabled {
 
 .preview-img {
   width: 100%;
-  height: 200px;
-  /* fixed preview area height */
+  /* always fill container width */
+  height: auto;
+  /* auto-scale height */
+  max-height: 60vh;
+  /* prevents images from getting too tall */
   object-fit: contain;
-  /* THIS ensures no stretching */
+  /* keeps aspect ratio */
   border-radius: 10px;
   background: #f0f0f0;
   /* optional: shows a placeholder */
