@@ -6,8 +6,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-html,
-body {
+html, body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
@@ -21,7 +20,7 @@ body {
   padding: 20px;
 }
 
-/* Main container: center content and make it responsive */
+/* Main container */
 .main-container {
   background: transparent;
   width: 100%;
@@ -67,7 +66,6 @@ header h1 {
 
 .notice ul {
   list-style: none;
-  padding-left: 0;
   margin-bottom: 10px;
 }
 
@@ -148,13 +146,12 @@ button:disabled {
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
-
-
+/* ─────────────────────────────── */
+/*      PC Layout (3 columns)      */
+/* ─────────────────────────────── */
 
 .layout-container {
   display: grid;
@@ -166,9 +163,7 @@ button:disabled {
 .left-panel {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 }
-
 
 .right-panel {
   display: flex;
@@ -176,53 +171,76 @@ button:disabled {
   gap: 20px;
 }
 
-
+/* Preview blocks */
 .preview-block {
   width: 100%;
-  height: auto;
-  padding: 10px;
-
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow: hidden;
-  /* prevents overflow issues */
-
   background: #fff;
   padding: 15px;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-
-
+/* Preview images scale according to screen */
 .preview-img {
   width: 100%;
-  /* always fill container width */
   height: auto;
-  /* auto-scale height */
   max-height: 60vh;
-  /* prevents images from getting too tall */
   object-fit: contain;
-  /* keeps aspect ratio */
   border-radius: 10px;
   background: #f0f0f0;
-  /* optional: shows a placeholder */
 }
 
+/* Download Button */
+#downloadButton {
+  width: 100%;
+  padding: 10px;
+  background: #8645ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
 
+/* ─────────────────────────────── */
+/*          Mobile Layout          */
+/* ─────────────────────────────── */
 
-
-
-
-/* Mobile Optimizations */
-@media (max-width: 480px) {
-  .main-container {
-    padding: 0;
+@media (max-width: 768px) {
+  .layout-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
+
+  /* Side-by-side previews */
+  .right-panel {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .preview-block {
+    flex: 1;
+    min-height: 220px;
+  }
+
+  .preview-img {
+    max-height: 150px;
+  }
+
+  .left-panel {
+    order: 3;
+  }
+}
+
+/* Small Mobile Optimizations */
+@media (max-width: 480px) {
 
   header h1 {
     font-size: 1.7em;
@@ -233,46 +251,11 @@ button:disabled {
     padding: 15px;
   }
 
-  .card h3 {
-    font-size: 1.1em;
-  }
-
   .button-group {
     flex-direction: column;
   }
 
   .button-group button {
     width: 100%;
-  }
-}
-
-
-
-
-@media (max-width: 768px) {
-  .layout-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  /* uploaded + output side-by-side */
-  .right-panel {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .preview-block {
-    height: 200px;
-    flex: 1;
-  }
-
-  .preview-img {
-    height: 150px;
-  }
-
-  /* PSNR at bottom */
-  .left-panel {
-    order: 3;
   }
 }
