@@ -59,6 +59,7 @@ body {
 
 /* Notice */
 .notice {
+  flex-shrink: 0; 
   height: 15.5rem;
   width: 32.5rem;
   background: #ffffff;
@@ -87,6 +88,7 @@ body {
 
 /* Card */
 .card {
+  flex-shrink: 0; 
   height: 15.5rem;
   width: 32.5rem;
   background: #fff;
@@ -182,13 +184,13 @@ button:disabled {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  gap: 1rem
+  gap: 1rem;
 }
 
 .preview-block {
   user-select: none;
   width: fit-content;
-  max-width: 45%;
+
   background: #fff;
   padding: 0.5em;
   border-radius: 0.5em;
@@ -198,9 +200,8 @@ button:disabled {
 }
 
 .preview-img {
-  max-width: 100%;           /* responsive */
+  width: 31.5rem;
   height: auto;
-  max-height: 35em;
   object-fit: contain;
   background: #f0f0f0;
   margin-top: 0.3em
