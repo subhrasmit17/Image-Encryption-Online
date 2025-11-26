@@ -178,7 +178,7 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   gap: 1rem
 }
