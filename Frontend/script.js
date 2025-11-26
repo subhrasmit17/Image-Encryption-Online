@@ -3,7 +3,7 @@ let lastEncryptedBlob = null;
 
 document.getElementById("imageInput").addEventListener("change", () => {
     // hide psnr
-    document.getElementById("metricsCard").style.display = "none";
+    document.getElementById("NPCRCard").style.display = "none";
     document.getElementById("npcrValue").innerText = "--";
 
     // hide old output
@@ -211,7 +211,7 @@ async function calculateNPCR(originalBlob, encryptedBlob) {
 
         // Update UI
         document.getElementById("npcrValue").innerText = data.NPCR.toFixed(4);
-        document.getElementById("metricsCard").style.display = "block";
+        document.getElementById("NPCRCard").style.display = "block";
 
     } catch (err) {
         console.error("NPCR calculation error:", err);
