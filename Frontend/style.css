@@ -150,7 +150,7 @@ button:disabled {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 
@@ -159,10 +159,10 @@ button:disabled {
   border: 0.5em solid #f3f3f3;
   border-top: 0.5em solid #814bff;
   border-radius: 50%;
-  width: 4em;
-  height: 4em;
+  width: 2em;
+  height: 2em;
   animation: spin 1s linear infinite;
-  margin: 3em auto;
+  margin: 2em auto;
   display: none;
 }
 
@@ -173,86 +173,33 @@ button:disabled {
 
 
 
-/* Center ONLY the main content */
+
 .page-wrapper {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 100%;
+  gap: 1rem
 }
 
-.layout-container {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
-  gap: 25px;
-  width: 100%;
-}
-
-
-
-#uploadedColumn {
-  grid-column: 2;   /* Center column */
-}
-
-#outputColumn {
-  grid-column: 1;   /* Will be used later */
-}
-
-#metricsColumn {
-  grid-column: 3;   /* Right column */
-}
-
-
-/* After output appears */
-.show-output #uploadedColumn {
-  grid-column: 1;
-}
-
-.show-output #outputColumn {
-  grid-column: 2;
-}
-
-.show-output #metricsColumn {
-  grid-column: 3;
-}
-
-
-
-
-
-.metrics {
-  display: flex;
-  flex-direction: column;
-}
-
-.preview {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Preview blocks */
 .preview-block {
-  width: 100%;
+  width: 30%;
   background: #fff;
-  padding: 15px;
-  border-radius: 12px;
+  padding: 0.5em;
+  border-radius: 0.5em;
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   text-align: center;
-
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  font-size: 0.9em;
 }
 
-/* Preview images scale according to screen */
+
 .preview-img {
   width: 100%;
-  height: auto;
-  max-height: 60vh;
+  max-height: 35em;
   object-fit: contain;
-  border-radius: 10px;
   background: #f0f0f0;
+  margin-top: 0.3em
 }
 
 /* Download Button */
@@ -268,57 +215,11 @@ button:disabled {
   margin-top: 5px;
 }
 
-/* ─────────────────────────────── */
-/*          Mobile Layout          */
-/* ─────────────────────────────── */
 
-@media (max-width: 768px) {
-  .layout-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
 
-  /* Side-by-side previews */
-  .right-panel {
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  .preview-block {
-    flex: 1;
-    min-height: 220px;
-  }
-
-  .preview-img {
-    max-height: 150px;
-  }
-
-  .left-panel {
-    order: 3;
-  }
+.metrics {
+  display: flex;
+  flex-direction: column;
 }
-
-/* Small Mobile Optimizations */
-@media (max-width: 480px) {
-
-  header h1 {
-    font-size: 1.7em;
-  }
-
-  .notice {
-    font-size: 0.9em;
-    padding: 15px;
-  }
-
-  .button-group {
-    flex-direction: column;
-  }
-
-  .button-group button {
-    width: 100%;
-  }
-}
-
 
 
