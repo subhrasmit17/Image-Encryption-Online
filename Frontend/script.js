@@ -156,8 +156,6 @@ async function processImage(action) {
 
 
 
-
-
         // Create preview URL
         const downloadUrl = URL.createObjectURL(blob);
 
@@ -166,7 +164,6 @@ async function processImage(action) {
         previewOutput.src = downloadUrl;
         previewOutput.style.display = "block";
         document.getElementById("previewOutputWrapper").style.display = "block";
-        switchToOutputLayout();
 
 
         // Show download button
@@ -253,10 +250,4 @@ function mapErrorToUserMessage(errorMessage) {
     } else {
         return 'Request failed: ' + errorMessage;
     }
-}
-
-
-function switchToOutputLayout() {
-    // Add class to body to activate the shifted grid layout
-    document.body.classList.add("show-output");
 }
