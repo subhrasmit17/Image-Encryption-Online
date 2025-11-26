@@ -3,7 +3,7 @@ let lastEncryptedBlob = null;
 
 document.getElementById("imageInput").addEventListener("change", () => {
     // hide psnr
-    document.getElementById("NPCRCard").style.display = "none";
+    document.getElementById("metricsCard").style.display = "none";
     document.getElementById("npcrValue").innerText = "--";
 
     // hide old output
@@ -166,6 +166,8 @@ async function processImage(action) {
         previewOutput.src = downloadUrl;
         previewOutput.style.display = "block";
         document.getElementById("previewOutputWrapper").style.display = "block";
+        switchToOutputLayout();
+
 
         // Show download button
         document.getElementById("downloadButton").style.display = "block";
@@ -211,7 +213,7 @@ async function calculateNPCR(originalBlob, encryptedBlob) {
 
         // Update UI
         document.getElementById("npcrValue").innerText = data.NPCR.toFixed(4);
-        document.getElementById("NPCRCard").style.display = "block";
+        document.getElementById("metricsCard").style.display = "block";
 
     } catch (err) {
         console.error("NPCR calculation error:", err);
@@ -251,4 +253,10 @@ function mapErrorToUserMessage(errorMessage) {
     } else {
         return 'Request failed: ' + errorMessage;
     }
+}
+
+
+function switchToOutputLayout() {
+    // Add class to body to activate the shifted grid layout
+    document.body.classList.add("show-output");
 }
