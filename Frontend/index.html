@@ -15,50 +15,53 @@
     <p class="subtext">Fast, free & secure image encryption in your browser.</p>
   </header>
 
+
+  <main class="main-container">
+
+    <!-- Notice -->
+    <section class="notice">
+      <h2>Upload Guidelines</h2>
+      <ul>
+        <li>Max image size: <strong>1.5 MB</strong></li>
+        <li>Max resolution: <strong>1,000,000 pixels</strong> (e.g. 1000×1000)</li>
+        <li>Key length: <strong>Max 15 characters</strong></li>
+        <li>Supported formats: <strong>.jpg, .png</strong></li>
+        <li><br>Server may take a few seconds to respond when waking from sleep</li>
+      </ul>
+      <p>⚠️ If upload fails, double-check image size and retry.</p>
+    </section>
+
+    <!-- Unified Form -->
+    <section class="card">
+      <h3>Select Image & Key</h3>
+      <input type="file" id="imageInput" accept="image/png, image/jpeg" />
+      <input type="text" id="keyInput" maxlength="15" placeholder="Enter key (max 15 characters)" />
+      <div class="button-group">
+        <button onclick="encryptImage()">Encrypt</button>
+        <button onclick="decryptImage()">Decrypt</button>
+      </div>
+    </section>
+
+    <div id="loader" class="loader" style="display: none;"></div>
+  </main>
+
+
+
+
+
+
   <div class="page-wrapper">
     <div class="layout-container">
-      <main class="main-container">
-
-        <!-- Notice -->
-        <section class="notice">
-          <h2>Upload Guidelines</h2>
-          <ul>
-            <li>Max image size: <strong>1.5 MB</strong></li>
-            <li>Max resolution: <strong>1,000,000 pixels</strong> (e.g. 1000×1000)</li>
-            <li>Key length: <strong>Max 15 characters</strong></li>
-            <li>Supported formats: <strong>.jpg, .png</strong></li>
-            <li><br>Server may take a few seconds to respond when waking from sleep</li>
-          </ul>
-          <p>⚠️ If upload fails, double-check image size and retry.</p>
-        </section>
-
-        <!-- Unified Form -->
-        <section class="card">
-          <h3>Select Image & Key</h3>
-          <input type="file" id="imageInput" accept="image/png, image/jpeg" />
-          <input type="text" id="keyInput" maxlength="15" placeholder="Enter key (max 15 characters)" />
-          <div class="button-group">
-            <button onclick="encryptImage()">Encrypt</button>
-            <button onclick="decryptImage()">Decrypt</button>
-          </div>
-        </section>
-
-        <div id="loader" class="loader" style="display: none;"></div>
-      </main>
 
 
-
-
-
-
-      <div class="right-panel">
-
+      <div class="preview" id="uploadedColumn">
         <div id="previewUploadedWrapper" class="preview-block" style="display:none;">
           <h4>Uploaded Image</h4>
           <img id="previewUploaded" class="preview-img">
         </div>
+      </div>
 
-
+      <div id="outputColumn">
         <div id="previewOutputWrapper" class="preview-block" style="display:none;">
           <h4>Output Image</h4>
           <img id="previewOutput" class="preview-img" style="display:none; margin-top:15px;">
@@ -66,13 +69,12 @@
           <button id="downloadButton" style="display:none; margin-top:10px;" onclick="downloadEncryptedImage()">
             Download Encrypted Image
           </button>
-
         </div>
       </div>
 
 
 
-      <div class="left-panel">
+      <div class="metrics" id="metricsColumn">
         <section class="card" id="metricsCard" style="display:none; margin-top:20px;">
           <h3>NPCR Metric</h3>
           <p><strong>NPCR:</strong> <span id="npcrValue">--</span>%</p>
@@ -80,14 +82,8 @@
       </div>
 
 
-
-
-
-
-
-
-    </div> <!-- end layout-container -->
-  </div> <!--end page-wrapper-->
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 
