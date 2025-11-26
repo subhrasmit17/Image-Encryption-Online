@@ -144,6 +144,15 @@ button:disabled {
   cursor: not-allowed;
 }
 
+
+.loader-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
 /* Loader */
 .loader {
   border: 6px solid #f3f3f3;
