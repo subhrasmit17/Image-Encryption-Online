@@ -41,7 +41,9 @@ body {
 }
 
 
-
+.content {
+  padding: 1rem;
+}
 
 
 /* Main container */
