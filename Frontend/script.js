@@ -14,9 +14,35 @@ document.getElementById("imageInput").addEventListener("change", () => {
     if (!file) return;
 
     const url = URL.createObjectURL(file);
-    document.getElementById("previewUploaded").src = url;
-    document.getElementById("previewUploadedWrapper").style.display = "block";
+    const previewImg = document.getElementById("previewUploaded");
+    const previewWrapper = document.getElementById("previewUploadedWrapper");
+
+    previewImg.src = url;
+    previewWrapper.style.display = "block";
+
+    // Set dynamic aspect ratio
+    updatePreviewAspectRatio(previewImg, previewWrapper);
 });
+
+
+function updatePreviewAspectRatio(imgElement, wrapperElement) {
+    const img = imgElement;
+
+    // Wait for image to load
+    img.onload = () => {
+        const w = img.naturalWidth;
+        const h = img.naturalHeight;
+
+        if (w && h) {
+            const ratio = w / h;
+            wrapperElement.style.aspectRatio = `${ratio}`;
+        }
+    };
+}
+
+
+
+
 
 
 
@@ -161,9 +187,14 @@ async function processImage(action) {
 
         // Show encrypted image preview
         const previewOutput = document.getElementById("previewOutput");
+        const previewWrapper2 = document.getElementById("previewOutputWrapper");
+
         previewOutput.src = downloadUrl;
+        previewWrapper2.style.display = "block";
         previewOutput.style.display = "block";
-        document.getElementById("previewOutputWrapper").style.display = "block";
+
+        // Dynamic aspect ratio for encrypted image
+        updatePreviewAspectRatio(previewOutput, previewWrapper2);
 
 
         // Show download button
