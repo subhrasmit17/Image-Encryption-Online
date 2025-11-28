@@ -246,6 +246,7 @@ button:disabled {
 }
 
 .content h3 {
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
   text-align: center;
   color: #7b33ff;
   margin-top: 1em;

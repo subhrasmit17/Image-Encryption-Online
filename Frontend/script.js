@@ -5,6 +5,7 @@ document.getElementById("imageInput").addEventListener("change", () => {
     // hide psnr
     document.getElementById("metricsCardNPCR").style.display = "none";
     document.getElementById("metricsCardUACI").style.display = "none";
+    document.getElementById("metricsHeading").style.display = "none";
     document.getElementById("npcrValue").innerText = "--";
     document.getElementById("uaciValue").innerText = "--";
 
@@ -173,6 +174,8 @@ async function processImage(action) {
 
         // Calculate NPCR only after encryption
         if (action === "encrypt") {
+            document.getElementById("metricsHeading").style.display = "block";
+
             const originalBlob = fileInput.files[0];
             await calculateNPCR(originalBlob, blob);
             await calculateUACI(originalBlob, blob);
