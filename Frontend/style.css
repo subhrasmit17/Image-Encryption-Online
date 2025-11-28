@@ -232,6 +232,7 @@ button:disabled {
 .metrics {
   display: flex;
   justify-content: center;
+  gap: 1em
 }
 
 .metricStyle{
@@ -241,10 +242,12 @@ button:disabled {
   padding: 1rem;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.11);
   text-align: center;
-  font-size: 0.8em;
+  font-size: clamp(0.75rem, 2.5vw, 0.95rem);
 }
 
-.metricStyle h3 {
+.content h3 {
+  text-align: center;
   color: #7b33ff;
+  margin-top: 1em;
   
 }
