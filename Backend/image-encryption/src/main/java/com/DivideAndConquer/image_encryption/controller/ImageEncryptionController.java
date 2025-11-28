@@ -75,4 +75,23 @@ public class ImageEncryptionController
                     .body(Map.of("error", "NPCR calculation failed: " + e.getMessage()));
         }
     }
+
+    @PostMapping("/uaci")
+    public ResponseEntity<?> calculateUACI(
+            @RequestParam("image1") MultipartFile image1,
+            @RequestParam("image2") MultipartFile image2) {
+        try {
+            BufferedImage img1 = ImageIO.read(new ByteArrayInputStream(image1.getBytes()));
+            BufferedImage img2 = ImageIO.read(new ByteArrayInputStream(image2.getBytes()));
+
+            double uaci = MetricService.calculateUACI(img1, img2);
+
+            return ResponseEntity.ok(Map.of("UACI", uaci));
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("error", "UACI calculation failed: " + e.getMessage()));
+        }
+    }
+
 }

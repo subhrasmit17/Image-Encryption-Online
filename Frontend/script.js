@@ -5,6 +5,7 @@ document.getElementById("imageInput").addEventListener("change", () => {
     // hide psnr
     document.getElementById("metricsCard").style.display = "none";
     document.getElementById("npcrValue").innerText = "--";
+    document.getElementById("uaciValue").innerText = "--";
 
     // hide old output
     document.getElementById("previewOutputWrapper").style.display = "none";
@@ -173,6 +174,7 @@ async function processImage(action) {
         if (action === "encrypt") {
             const originalBlob = fileInput.files[0];
             await calculateNPCR(originalBlob, blob);
+            await calculateUACI(originalBlob, blob);
         }
 
 
@@ -215,6 +217,36 @@ async function calculateNPCR(originalBlob, encryptedBlob) {
     } catch (err) {
         console.error("NPCR calculation error:", err);
         alert("Failed to calculate NPCR.");
+    }
+}
+
+async function calculateUACI(originalBlob, encryptedBlob) {
+    const formData = new FormData();
+    formData.append("image1", originalBlob);
+    formData.append("image2", encryptedBlob);
+
+    try {
+        const response = await fetch(
+            "https://image-encryptor-backend.onrender.com/api/image/uaci",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(await response.text());
+        }
+
+        const data = await response.json();
+
+        // Update UI
+        document.getElementById("uaciValue").innerText = data.UACI.toFixed(4);
+        document.getElementById("metricsCard").style.display = "block";
+
+    } catch (err) {
+        console.error("UACI calculation error:", err);
+        alert("Failed to calculate UACI.");
     }
 }
 
