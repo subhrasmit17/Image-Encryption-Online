@@ -3,7 +3,8 @@ let lastEncryptedBlob = null;
 
 document.getElementById("imageInput").addEventListener("change", () => {
     // hide psnr
-    document.getElementById("metricsCard").style.display = "none";
+    document.getElementById("metricsCardNPCR").style.display = "none";
+    document.getElementById("metricsCardUACI").style.display = "none";
     document.getElementById("npcrValue").innerText = "--";
     document.getElementById("uaciValue").innerText = "--";
 
@@ -212,7 +213,7 @@ async function calculateNPCR(originalBlob, encryptedBlob) {
 
         // Update UI
         document.getElementById("npcrValue").innerText = data.NPCR.toFixed(4);
-        document.getElementById("metricsCard").style.display = "block";
+        document.getElementById("metricsCardNPCR").style.display = "block";
 
     } catch (err) {
         console.error("NPCR calculation error:", err);
@@ -242,7 +243,7 @@ async function calculateUACI(originalBlob, encryptedBlob) {
 
         // Update UI
         document.getElementById("uaciValue").innerText = data.UACI.toFixed(4);
-        document.getElementById("metricsCard").style.display = "block";
+        document.getElementById("metricsCardUACI").style.display = "block";
 
     } catch (err) {
         console.error("UACI calculation error:", err);
